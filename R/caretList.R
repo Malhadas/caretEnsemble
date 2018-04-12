@@ -233,6 +233,11 @@ caretList <- function(
     } else{
       model <- do.call(train, model_args)
     }
+
+    if(!is.null(model)){
+      if(model$modelType == "Regression") model$pred$pred <- as.numeric(model$pred$pred)
+    }
+
     return(model)
   })
   names(modelList) <- names(tuneList)
